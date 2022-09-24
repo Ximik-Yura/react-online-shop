@@ -7,13 +7,7 @@ import Drawer from "./components/Drawer";
 
 function App() {
   const [items, setItems] = React.useState([]);
-  const [cartItems, setCartItems] = React.useState([
-    {
-      title: "ffffff",
-      price: 123,
-      imageUrl: "/img/Bible_1.jpg"
-    },
-  ]);
+  const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {

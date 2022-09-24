@@ -2,8 +2,8 @@ function Drawer({ onClose, items = [] }) {
   return (
     <div className="overlay">
       <div className="drawer">
-        <h2 className="d-flex justify-between  mb-30">
-          Корзина{''}
+        <h2 className="d-flex justify-between mb-30">
+          Корзина{" "}
           <img
             onClick={onClose}
             className="cu-p"
@@ -15,13 +15,14 @@ function Drawer({ onClose, items = [] }) {
         <div className="items">
           {items.map((obj) => (
             <div className="cartItem d-flex align-center mb-20">
-              <div>
+              <div
                 style={{ backgroundImage: `url(${obj.imageUrl})` }}
                 className="cartItemImg"
-              </div>
+              ></div>
+
               <div className="mr-20 flex">
-                <p className="mb-5"> {obj.title}</p>
-                <b> {obj.price}грн</b>
+                <p className="mb-5">{obj.title}</p>
+                <b>{obj.price} грн.</b>
               </div>
               <img
                 className="removeBtn"
@@ -35,17 +36,16 @@ function Drawer({ onClose, items = [] }) {
         <div className="cartTotalBlock">
           <ul>
             <li>
-              <span>Загально</span>
+              <span>Загалом:</span>
               <div></div>
-              <b>399 гн</b>
+              <b>1 498 грн. </b>
             </li>
             <li>
-              <span>Податок 5 %</span>
+              <span>ПДВ 5%:</span>
               <div></div>
-              <b>19,95 грн</b>
+              <b>107 грн. </b>
             </li>
           </ul>
-
           <button className="greenButton">
             Оформити замовлення <img src="/img/arrow.svg" alt="Arrow" />
           </button>
