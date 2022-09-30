@@ -9,6 +9,7 @@ import Drawer from "./components/Drawer";
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [cartOpened, setCartOpened] = React.useState(false);
 
@@ -18,11 +19,11 @@ function App() {
       .then((res) => {
         setItems(res.data);
       });
-      axios
-        .get("https://6323ebdbbb2321cba920f100.mockapi.io/cart")
-        .then((res) => {
-          setCartItems(res.data);
-        });
+    axios
+      .get("https://6323ebdbbb2321cba920f100.mockapi.io/cart")
+      .then((res) => {
+        setCartItems(res.data);
+      });
   }, []);
 
   const onAddToCart = (obj) => {
@@ -31,10 +32,15 @@ function App() {
     //setCartItems((prev) => [...prev, obj]);
   };
 
-  const onRemoveItem = (id) =>{
-        axios.delete(`https://6323ebdbbb2321cba920f100.mockapi.io/cart/${id}`);
-        setCartItems((prev)=>prev.filter(item=>item.id !== id));
-  }
+  const onRemoveItem = (id) => {
+    axios.delete(`https://6323ebdbbb2321cba920f100.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const onAddToFavorite = (obj) => {
+    axios.post("https://6323ebdbbb2321cba920f100.mockapi.io/favotites", obj);
+    setFavorites((prev) => [...prev, obj]);
+  };
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
@@ -43,7 +49,11 @@ function App() {
   return (
     <div className="App clear">
       {cartOpened && (
-        <Drawer items={cartItems} onClose={() => setCartOpened(false)}  onRemove={onRemoveItem}/>
+        <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={onRemoveItem}
+        />
       )}
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
@@ -56,7 +66,7 @@ function App() {
           <div className="search-block d-flex">
             <img src="/img/search.svg" alt="Search" />
             {searchValue && (
-              <img  
+              <img
                 onClick={() => setSearchValue("")}
                 className="clear cu-p"
                 src="/img/btn-remove.svg"
@@ -82,7 +92,7 @@ function App() {
                 title={item.title}
                 price={item.price}
                 imageUrl={item.imageUrl}
-                onFavorite={() => console.log("Add in favorite")}
+                onFavorite={(obj)=>onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
               />
             ))}
