@@ -36,7 +36,7 @@ function App() {
   const onAddToCart = (obj) => {
     axios.post("https://6323ebdbbb2321cba920f100.mockapi.io/cart", obj);
     setCartItems([...cartItems, obj]);
-    //setCartItems((prev) => [...prev, obj]);
+    setCartItems((prev) => [...prev, obj]);
   };
 
   const onRemoveItem = (id) => {
@@ -44,11 +44,24 @@ function App() {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onAddToFavorite = (obj) => {
-    axios.post("https://6323ebdbbb2321cba920f100.mockapi.io/favorites", obj);
-    setFavorites((prev) => [...prev, obj]);
+  const onAddToFavorite = async (obj) => {
+    try {
+      if (favorites.find((favObj) => favObj.id === obj.id)) {
+        axios.delete(
+          `/https://6323ebdbbb2321cba920f100.mockapi.io/favorites/${obj.id}`
+        );
+      } else {
+        const { data } = await axios.post(
+          "https://6323ebdbbb2321cba920f100.mockapi.io/favorites",
+          obj
+        );
+        setFavorites((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert("Не вдалося добавити в обрані");
+    }
   };
-
+  
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -65,7 +78,7 @@ function App() {
       <Header onClickCart={() => setCartOpened(true)} />
 
       <Route path="/" exact>
-        <Home
+          <Home
           items={items}
           searchValue={searchValue}
           setSearchValue={setSearchValue}

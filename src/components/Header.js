@@ -5,14 +5,14 @@ function Header(props) {
     <header className="d-flex justify-between align-center p-40">
       <Link to="/">
         <div className="d-flex align-center">
-          <img width={40} height={40} src="/img/logo.svg" alt="logo" />
-          <div>
-            <h3>Religion Books</h3>
-            <p className="opacity-5">
-              Магазин християнської та культурно-просвітницької літератури{" "}
-            </p>
+             <img width={40} height={40} src="/img/logo.svg" alt="logo" />
+            <div>
+              <h3>Religion Books</h3>
+              <p className="opacity-5">
+                Магазин християнської та культурно-просвітницької літератури{" "}
+              </p>
+            </div>
           </div>
-        </div>
       </Link>
       <ul className="d-flex">
         <li onClick={props.onClickCart} className="mr-30 cu-p">

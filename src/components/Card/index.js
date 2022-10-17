@@ -22,7 +22,7 @@ function Card({ title, imageUrl, price, onFavorite, onPlus, favorited=false }) {
           alt="Unliked"
         />
       </div>
-      <img width={115} height={150} src={imageUrl} alt="Sneakers" />
+      <img width={115} height={150} src={imageUrl} alt="Books" />
       <h5>{title}</h5>
       <div className="d-flex justify-between align-center">
         <div className="d-flex flex-column">
