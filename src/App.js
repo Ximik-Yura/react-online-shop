@@ -101,7 +101,7 @@ function App() {
           prev.filter((item) => Number(item.id) !== Number(obj.id))
         );
       } else {
-        const { data } = await axios.post("/favorites", obj);
+        const { data } = await axios.post("https://6323ebdbbb2321cba920f100.mockapi.io/favorites", obj);
         const { data } = await axios.post(
           "https://6323ebdbbb2321cba920f100.mockapi.io/favorites",
           obj
