@@ -1,6 +1,9 @@
+import React from 'react'
 import { Link } from "react-router-dom";
 
 function Header(props) {
+const {cartItems} =React.useContext(AppContext);
+    
   return (
     <header className="d-flex justify-between align-center p-40">
       <Link to="/">
