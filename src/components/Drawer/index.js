@@ -55,7 +55,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
 
         {items.length > 0 ? (
           <div className="d-flex flex-column flex">
-            <div className="items">
+            <div className="items flex">
               {items.map((obj) => (
                 <div
                   key={obj.id}
@@ -79,16 +79,15 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 </div>
               ))}
             </div>
-
             <div className="cartTotalBlock">
               <ul>
                 <li>
-                  <span>Загалом:</span>
+                  <span>Сумарно:</span>
                   <div></div>
-                  <b>{totalPrice}грн. </b>
+                  <b>{totalPrice} руб. </b>
                 </li>
                 <li>
-                  <span>ПДВ 5%:</span>
+                  <span>Податок 5%:</span>
                   <div></div>
                   <b>{(totalPrice / 100) * 5} грн. </b>
                 </li>
@@ -98,17 +97,17 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 onClick={onClickOrder}
                 className="greenButton"
               >
-                Оформити замовлення <img src="img/arrow.svg" alt="Arrow" />
+                Оформити завлення <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
         ) : (
           <Info
-            title={isOrderComplete ? "Замовлення оформлене!" : "Корзина пуста"}
+            title={isOrderComplete ? "Замвлення оформлено!" : "Корзина пуста"}
             description={
               isOrderComplete
-                ? `Ваше замовлення #${orderId} скоро буде передане курєрській доставці`
-                : "Додайте бодай одну книгу, щоб зробити замовлення."
+                ? `Ваше змовлення #${orderId} скоро буде передане курєрскій доставці`
+                : "Добавте хоч би одну книгу, щоб зробити замовлення."
             }
             image={
               isOrderComplete ? "img/complete-order.jpg" : "img/empty-cart.jpg"

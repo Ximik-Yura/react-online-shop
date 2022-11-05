@@ -40,7 +40,7 @@ function Home({
               alt="Clear"
             />
           )}
-          <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
+          <input onChange={onChangeSearchInput} value={searchValue} placeholder="Пошук..." />
         </div>
       </div>
       <div className="d-flex flex-wrap">{renderItems()}</div>

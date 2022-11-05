@@ -13,10 +13,11 @@ function Orders() {
     (async () => {
       try {
         const { data } = await axios.get('https://6323ebdbbb2321cba920f100.mockapi.io/orders');
+        
         setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
         setIsLoading(false);
       } catch (error) {
-        alert('Помилка при апиті замовлення');
+        alert('Помилка при запиті замовлення');
         console.error(error);
       }
     })();
